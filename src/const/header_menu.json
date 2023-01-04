@@ -1,0 +1,52 @@
+[
+    {
+        "title": "REDDIT",
+        "url": "https://www.reddit.com/new",
+        "underlineColor": "green",
+        "submenu": [
+            {
+                "title": "DCT",
+                "url": "https://www.reddit.com/r/indonesia/search/?q=Chat%20Thread&restrict_sr=1&sr_nsfw=&sort=new"
+            },
+            {
+                "title": "r/Indonesia",
+                "url": "https://www.reddit.com/r/indonesia/new"
+            }
+        ]
+    },
+    {
+        "title": "YOUTUBE",
+        "url": "https://www.youtube.com/",
+        "underlineColor": "red",
+        "submenu": [
+            {
+                "title": "Subscriptions",
+                "url": "https://www.youtube.com/feed/subscriptions"
+            }
+        ]
+    },
+    {
+        "title": "DISCORD",
+        "url": "https://discord.com/channels/@me",
+        "underlineColor": "blue",
+        "submenu": []
+    },
+    {
+        "title": "STEAM",
+        "url": "https://store.steampowered.com",
+        "underlineColor": "blueviolet",
+        "submenu": []
+    },
+    {
+        "title": "GITHUB",
+        "url": "https://github.com",
+        "underlineColor": "purple",
+        "submenu": []
+    },
+    {
+        "title": "EMAIL",
+        "url": "https://mail.google.com/mail/u/0/#inbox",
+        "underlineColor": "white",
+        "submenu": []
+    }
+]
