@@ -6,22 +6,156 @@
         "submenu": [
             {
                 "title": "DCT",
-                "url": "https://www.reddit.com/r/indonesia/search/?q=Chat%20Thread&restrict_sr=1&sr_nsfw=&sort=new"
+                "url": "https://www.reddit.com/r/indonesia/search/?q=Chat%20Thread&restrict_sr=1&sr_nsfw=&sort=new",
+                "submenu": []
             },
             {
                 "title": "r/Indonesia",
-                "url": "https://www.reddit.com/r/indonesia/new"
+                "url": "https://www.reddit.com/r/indonesia/new",
+                "submenu": []
             }
         ]
     },
     {
         "title": "YOUTUBE",
-        "url": "https://www.youtube.com/",
+        "url": "https://youtube.com/",
         "underlineColor": "red",
         "submenu": [
             {
                 "title": "Subscriptions",
-                "url": "https://www.youtube.com/feed/subscriptions"
+                "url": "https://youtube.com/feed/subscriptions",
+                "submenu": []
+            },
+            {
+                "title": "VTubers",
+                "url": "#",
+                "submenu": [
+                    {
+                        "title": "Hololive",
+                        "url": "#",
+                        "submenu": [
+                            {
+                                "title": "En",
+                                "url": "#",
+                                "submenu": [
+                                    {
+                                        "title": "Ninomae Inanis",
+                                        "url": "https://youtube.com/@NinomaeInanis/videos",
+                                        "submenu": []
+                                    },
+                                    {
+                                        "title": "Mori Calliope",
+                                        "url": "https://youtube.com/@MoriCalliope/videos",
+                                        "submenu": []
+                                    },
+                                    {
+                                        "title": "IRyS",
+                                        "url": "https://youtube.com/@IRyS/videos",
+                                        "submenu": []
+                                    },
+                                    {
+                                        "title": "Ceres Fauna",
+                                        "url": "https://youtube.com/@CeresFauna/videos",
+                                        "submenu": []
+                                    },
+                                    {
+                                        "title": "Hakos Baelz",
+                                        "url": "https://youtube.com/@HakosBaelz/videos",
+                                        "submenu": []
+                                    }
+                                ]
+                            },
+                            {
+                                "title": "Jp",
+                                "url": "#",
+                                "submenu": [
+                                    {
+                                        "title": "Hoshimachi Suisei",
+                                        "url": "https://youtube.com/@HoshimachiSuisei/videos",
+                                        "submenu": []
+                                    },
+                                    {
+                                        "title": "Omaru Polka",
+                                        "url": "https://youtube.com/@OmaruPolka/videos",
+                                        "submenu": []
+                                    }
+                                ]
+                            },
+                            {
+                                "title": "Id",
+                                "url": "#",
+                                "submenu": [
+                                    {
+                                        "title": "Vestia Zeta",
+                                        "url": "https://youtube.com/@VestiaZeta/videos",
+                                        "submenu": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Nijisanji",
+                        "url": "#",
+                        "submenu": [
+                            {
+                                "title": "En",
+                                "url": "#",
+                                "submenu": [
+                                    {
+                                        "title": "Enna Alouette",
+                                        "url": "https://youtube.com/@EnnaAlouette/videos",
+                                        "submenu": []
+                                    },
+                                    {
+                                        "title": "Rosemi Lovelock",
+                                        "url": "https://youtube.com/@Rosemi_Lovelock/videos",
+                                        "submenu": []
+                                    },
+                                    {
+                                        "title": "Aia Amare",
+                                        "url": "https://youtube.com/@AiaAmare/videos",
+                                        "submenu": []
+                                    }
+                                ]
+                            },
+                            {
+                                "title": "Id",
+                                "url": "#",
+                                "submenu": [
+                                    {
+                                        "title": "Mika Melatika",
+                                        "url": "https://youtube.com/@MikaMelatika/videos",
+                                        "submenu": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Independent",
+                        "url": "#",
+                        "submenu": [
+                            {
+                                "title": "Miori Celesta",
+                                "url": "https://youtube.com/@MioriCelesta/videos",
+                                "submenu": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "title": "SPOTIFY",
+        "url": "https://open.spotify.com/",
+        "underlineColor": "yellow",
+        "submenu": [
+            {
+                "title": "Liked Songs",
+                "url": "https://open.spotify.com/collection/tracks",
+                "submenu": []
             }
         ]
     },
@@ -36,6 +170,23 @@
         "url": "https://store.steampowered.com",
         "underlineColor": "blueviolet",
         "submenu": []
+    },
+    {
+        "title": "MEDIA",
+        "url": "#",
+        "underlineColor": "darkorchid",
+        "submenu": [
+            {
+                "title": "Nyaa",
+                "url": "https://nyaa.si/",
+                "submenu": []
+            },
+            {
+                "title": "SubsPlease",
+                "url": "https://subsplease.org/",
+                "submenu": []
+            }
+        ]
     },
     {
         "title": "GITHUB",

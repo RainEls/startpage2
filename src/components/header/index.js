@@ -13,8 +13,91 @@ import {
   Menu,
   Fade,
 } from "@mui/material";
+import { ChevronRight } from "@mui/icons-material";
 
-function HeaderItem(menuItem) {
+function Dropdown(menu) {
+  let [anchorEl, setAnchorEl] = React.useState(null);
+  let linkRef = React.useRef();
+  let isMenuShown = Boolean(anchorEl);
+
+  let handleClick = (event) => {
+    setAnchorEl(linkRef.current);
+  };
+  let handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <Link
+      key={menu.title}
+      href={menu.url}
+      ref={linkRef}
+      onMouseEnter={menu.submenu.length > 0 ? handleClick : null}
+      onMouseLeave={handleClose}
+      style={{ textDecoration: "none" }}
+      sx={{
+        color: "inherit",
+      }}
+    >
+      <MenuItem
+        key={menu.title}
+        sx={{
+          pointerEvents: "auto",
+          justifyContent: "space-between",
+          paddingRight: menu.submenu.length ? "0px" : "16px",
+        }}
+      >
+
+        <Typography variant="h8" color="black">
+          {menu.title}
+        </Typography>
+
+
+        {menu.submenu.length ? (
+          <ChevronRight />
+        ) : (
+          <div />
+        )}
+
+      </MenuItem>
+
+      <Menu
+        anchorEl={anchorEl}
+        open={isMenuShown}
+        onClose={handleClose}
+        elevation={0}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "left",
+        }}
+        PaperProps={{
+          style: {
+            minWidth: 120,
+            borderRadius: 0,
+            transform: "translateX(0px) translateY(0px)",
+          },
+        }}
+        sx={{
+          pointerEvents: "none",
+        }}
+        disableScrollLock={true}
+        disableAutoFocusItem={true}
+        disableRestoreFocus={true}
+        TransitionComponent={Fade}
+      >
+        {menu.submenu.map((submenu) => {
+          return Dropdown(submenu);
+        })}
+      </Menu>
+    </Link>
+  );
+}
+
+function Category(category) {
   let [anchorEl, setAnchorEl] = React.useState(null);
   let linkRef = React.useRef();
   let isMenuShown = Boolean(anchorEl);
@@ -28,8 +111,8 @@ function HeaderItem(menuItem) {
 
   return (
     <Box
-      key={menuItem.title}
-      onMouseEnter={menuItem.submenu.length > 0 ? handleClick : null}
+      key={category.title}
+      onMouseEnter={category.submenu.length > 0 ? handleClick : null}
       onMouseLeave={handleClose}
       sx={{
         display: "inline-block",
@@ -40,8 +123,8 @@ function HeaderItem(menuItem) {
       }}
     >
       <Link
-        href={menuItem.url}
-        onClick={menuItem.submenu.length > 0 ? handleClick : null}
+        href={category.url}
+        onClick={category.submenu.length > 0 ? handleClick : null}
         style={{ textDecoration: "none" }}
         sx={{
           color: "inherit",
@@ -56,7 +139,7 @@ function HeaderItem(menuItem) {
             bottom: "-10px",
             left: "50%",
             transform: "translate(-50%,0%)",
-            backgroundColor: menuItem.underlineColor,
+            backgroundColor: category.underlineColor,
             transition: "all 0.3s ease-in-out",
             visibility: isMenuShown === true ? "visible" : "hidden",
           },
@@ -74,7 +157,7 @@ function HeaderItem(menuItem) {
         >
           {/* <menuItem.icon sx={{ color: "white", mr: 1 }} /> */}
           <Typography color="white" fontSize={14}>
-            {menuItem.title}
+            {category.title}
           </Typography>
         </ButtonBase>
 
@@ -95,7 +178,8 @@ function HeaderItem(menuItem) {
           PaperProps={{
             style: {
               minWidth: 120,
-              transform: "translateX(0px) translateY(20px)",
+              borderRadius: 0,
+              transform: "translateX(0px) translateY(21px)",
             },
           }}
           sx={{
@@ -106,27 +190,8 @@ function HeaderItem(menuItem) {
           disableRestoreFocus={true}
           TransitionComponent={Fade}
         >
-          {menuItem.submenu.map((menu, index) => {
-            return (
-              <Link
-                key={menu.title}
-                href={menu.url}
-                style={{ textDecoration: "none" }}
-                sx={{
-                  color: "inherit",
-                }}
-              >
-                <MenuItem
-                  key={menu.title}
-                  onClick={handleClose}
-                  sx={{
-                    pointerEvents: "auto",
-                  }}
-                >
-                  {menu.title}
-                </MenuItem>
-              </Link>
-            );
+          {category.submenu.map((menu) => {
+            return Dropdown(menu);
           })}
         </Menu>
       </Link>
@@ -139,7 +204,7 @@ function HeaderKiosk() {
     <Toolbar sx={{ justifyContent: "end", alignItems: "center" }}>
       <ButtonGroup variant="outlined">
         {menuItems.map((menu) => {
-          return HeaderItem(menu);
+          return Category(menu);
         })}
       </ButtonGroup>
     </Toolbar>
