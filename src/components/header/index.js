@@ -32,8 +32,8 @@ function Dropdown(menu) {
       key={menu.title}
       href={menu.url}
       ref={linkRef}
-      onMouseEnter={menu.submenu.length > 0 ? handleClick : null}
-      onMouseLeave={handleClose}
+      onMouseEnter={menu.submenu.length > 0 ? () => { handleClick() } : null}
+      onMouseLeave={() => { handleClose() }}
       style={{ textDecoration: "none" }}
       sx={{
         color: "inherit",
@@ -64,7 +64,7 @@ function Dropdown(menu) {
       <Menu
         anchorEl={anchorEl}
         open={isMenuShown}
-        onClose={handleClose}
+        onClose={() => { handleClose() }}
         elevation={0}
         anchorOrigin={{
           vertical: "top",
@@ -102,7 +102,7 @@ function Category(category) {
   let linkRef = React.useRef();
   let isMenuShown = Boolean(anchorEl);
 
-  let handleClick = (event) => {
+  let handleClick = () => {
     setAnchorEl(linkRef.current);
   };
   let handleClose = () => {
@@ -112,8 +112,8 @@ function Category(category) {
   return (
     <Box
       key={category.title}
-      onMouseEnter={category.submenu.length > 0 ? handleClick : null}
-      onMouseLeave={handleClose}
+      onMouseEnter={category.submenu.length > 0 ? () => { handleClick() } : null}
+      onMouseLeave={() => { handleClose() }}
       sx={{
         display: "inline-block",
         position: "relative",
@@ -124,7 +124,7 @@ function Category(category) {
     >
       <Link
         href={category.url}
-        onClick={category.submenu.length > 0 ? handleClick : null}
+        onClick={category.submenu.length > 0 ? () => { handleClick() } : null}
         style={{ textDecoration: "none" }}
         sx={{
           color: "inherit",
@@ -165,7 +165,7 @@ function Category(category) {
         <Menu
           anchorEl={anchorEl}
           open={isMenuShown}
-          onClose={handleClose}
+          onClose={() => { handleClose() }}
           elevation={0}
           anchorOrigin={{
             vertical: "bottom",

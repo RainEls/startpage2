@@ -30,17 +30,13 @@ const useStore = create((set) => ({
           },
         })
         .then((response) => {
-          // console.log(response.data);
-
           set({
             tasksActive: response.data,
             isTasksActiveChecked: true,
-            isTaskCreateSuccess: false,
           });
         })
         .catch((error) => console.error(error));
   },
-  isTaskCreateSuccess: false,
   createTask: async (content) => {
     if (config.tokenTodoist) await axios
       .post(
@@ -55,14 +51,31 @@ const useStore = create((set) => ({
         }
       )
       .then((response) => {
-        // console.log(response.data);
-
         set({
-          isTaskCreateSuccess: true,
           isTasksActiveChecked: false,
         });
       })
       .catch((error) => console.error(error));
+  },
+  completeTask: async (taskId) => {
+    console.log("Todoist completeTask API invalid?")
+    // // https://developer.todoist.com/rest/v2/#close-a-task
+
+    // if (config.tokenTodoist) await axios
+    //   .post(
+    //     `https://api.todoist.com/rest/v2/tasks/${taskId}/close`,
+    //     {
+    //       headers: {
+    //         Authorization: `Bearer ${config.tokenTodoist}`,
+    //       },
+    //     }
+    //   )
+    //   .then((response) => {
+    //     set({
+    //       isTasksActiveChecked: false,
+    //     });
+    //   })
+    //   .catch((error) => console.error(error));
   },
 }));
 
@@ -71,7 +84,6 @@ function InputNewTask() {
   let createTask = useStore((state) => state.createTask);
 
   let add = () => {
-    console.log(inputRef.current.value);
     createTask(inputRef.current.value);
     inputRef.current.value = "";
   };
@@ -82,7 +94,7 @@ function InputNewTask() {
         variant="standard"
         size="small"
         inputRef={inputRef}
-        onSubmit={add}
+        onSubmit={() => { add() }}
         onKeyPress={(e) => {
           if (e.key === "Enter") add();
         }}
@@ -103,8 +115,12 @@ function InputNewTask() {
 function ViewTasksActive() {
   let tasksActive = useStore((state) => state.tasksActive);
   let isTasksActiveChecked = useStore((state) => state.isTasksActiveChecked);
-  let isTaskCreateSuccess = useStore((state) => state.isTaskCreateSuccess);
   let getTasksActive = useStore((state) => state.getTasksActive);
+  let completeTask = useStore((state) => state.completeTask);
+
+  let handleComplete = (taskId) => {
+    completeTask(taskId)
+  };
 
   React.useEffect(() => {
     async function fetch() {
@@ -112,14 +128,14 @@ function ViewTasksActive() {
         return new Promise(res => setTimeout(res, delay));
       }
 
-      await timeout(config.delay);
+      await timeout(0);
       getTasksActive();
     }
 
     fetch();
   }, [getTasksActive]);
 
-  if (isTaskCreateSuccess) getTasksActive();
+  if (!isTasksActiveChecked) getTasksActive();
 
   if (!tasksActive.length)
     if (isTasksActiveChecked)
@@ -149,19 +165,21 @@ function ViewTasksActive() {
           }
 
           return (
-            <TimelineItem key={event.content}>
-              <TimelineOppositeContent display="none" />
-              <TimelineSeparator>
-                <TimelineDot />
-                <TimelineConnector />
-              </TimelineSeparator>
-              <TimelineContent>
-                <Typography variant="h7" color="white">
-                  {event.content}
-                </Typography>
-                <Typography color="white">{dueDate}</Typography>
-              </TimelineContent>
-            </TimelineItem>
+            <div key={event.id} onClick={() => { handleComplete(event.id) }}>
+              <TimelineItem >
+                <TimelineOppositeContent display="none" />
+                <TimelineSeparator>
+                  <TimelineDot />
+                  <TimelineConnector />
+                </TimelineSeparator>
+                <TimelineContent>
+                  <Typography variant="h7" color="white">
+                    {event.content}
+                  </Typography>
+                  <Typography color="white">{dueDate}</Typography>
+                </TimelineContent>
+              </TimelineItem>
+            </div>
           );
         })}
       </Timeline>
