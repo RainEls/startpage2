@@ -107,7 +107,16 @@ function ViewTasksActive() {
   let getTasksActive = useStore((state) => state.getTasksActive);
 
   React.useEffect(() => {
-    getTasksActive();
+    async function fetch() {
+      function timeout(delay) {
+        return new Promise(res => setTimeout(res, delay));
+      }
+
+      await timeout(config.delay);
+      getTasksActive();
+    }
+
+    fetch();
   }, [getTasksActive]);
 
   if (isTaskCreateSuccess) getTasksActive();

@@ -67,7 +67,16 @@ function CurrentWeather() {
   const getWeatherForecast = useStore((state) => state.getWeatherForecast);
 
   React.useEffect(() => {
-    getWeatherForecast();
+    async function fetch() {
+      function timeout(delay) {
+        return new Promise(res => setTimeout(res, delay));
+      }
+
+      await timeout(config.delay);
+      getWeatherForecast();
+    }
+
+    fetch();
   }, [getWeatherForecast]);
 
   let weather = wwo_table.find((element) => {

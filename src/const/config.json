@@ -1,5 +1,6 @@
 {
     "bg": "https://i.redd.it/xmwx7u89qe8a1.png",
+    "delay": 10000,
     "latitude": "-6.99",
     "longitude": "110.42",
     "tokenTodoist": ""
